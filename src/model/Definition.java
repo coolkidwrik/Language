@@ -22,7 +22,7 @@ public class Definition {
     // (in the case of languages like japanese where the pronunciation can change based on the sentence it is in)
     private final HashMap<String, String> examples;
 
-    //EFFECTS: constructs a definition with a definition and examples
+    //EFFECTS: constructs a Definition with a definition, and pronunciation
     public Definition(String definition, String pronunciation) {
         this.definition = definition;
         this.pronunciation = pronunciation;
@@ -70,15 +70,6 @@ public class Definition {
         return definition + "\n" + pronunciation + "\n" + examplesToString();
     }
 
-    //EFFECTS: returns examples and additional information in a string
-    public String examplesToString() {
-        StringBuilder sb = new StringBuilder();
-        for (HashMap.Entry<String, String> entry : examples.entrySet()) {
-            sb.append(entry.getKey()).append(" : ").append(entry.getValue()).append("\n");
-        }
-        return sb.toString();
-    }
-
     //MODIFIES: this
     //EFFECTS: adds an example to the definition
     public void addExample(String example, String additionalInfo) {
@@ -90,5 +81,17 @@ public class Definition {
     public void removeExample(int exampleNumber) {
         String example = (String) examples.keySet().toArray()[exampleNumber];
         examples.remove(example);
+    }
+
+    // private helpers
+    //////////////////////////
+
+    //EFFECTS: returns examples and additional information in a string
+    private String examplesToString() {
+        StringBuilder sb = new StringBuilder();
+        for (HashMap.Entry<String, String> entry : examples.entrySet()) {
+            sb.append(entry.getKey()).append(" : ").append(entry.getValue()).append("\n");
+        }
+        return sb.toString();
     }
 }

@@ -58,6 +58,13 @@ public class Lang {
     }
 
     //REQUIRES: word exists in language
+    //MODIFIES: this
+    //EFFECTS: removes the word from the language
+    public void removeWord(String word) {
+        words.remove(word);
+    }
+
+    //REQUIRES: word exists in language
     //EFFECTS: returns the definition of the word
     public Definition getDefinition(String word) {
         return words.get(word).get(word);
@@ -71,9 +78,11 @@ public class Lang {
 
     //REQUIRES: word exists in language
     //MODIFIES: this
-    //EFFECTS: removes the word from the language
-    public void removeWord(String word) {
-        words.remove(word);
+    //EFFECTS: changes the definition of the word
+    public void changeTranslation(String word, String oldTranslation, String newTranslation) {
+        Definition definition = words.get(word).get(oldTranslation);
+        words.get(word).remove(oldTranslation);
+        words.get(word).put(newTranslation, definition);
     }
 
     //REQUIRES: word exists in language
@@ -81,5 +90,20 @@ public class Lang {
     //EFFECTS: removes the translation from the word
     public void removeTranslation(String word, String translation) {
         words.get(word).remove(translation);
+    }
+
+    //EFFECTS: returns the words in the language
+    public String[] viewWords() {
+        return words.keySet().toArray(new String[0]);
+    }
+
+    //EFFECTS: returns the translations of the word
+    public String[] viewTranslations(String word) {
+        return words.get(word).keySet().toArray(new String[0]);
+    }
+
+    //EFFECTS: returns the definition of the word
+    public String viewDefinition(String word, String translation) {
+        return words.get(word).get(translation).toString();
     }
 }
