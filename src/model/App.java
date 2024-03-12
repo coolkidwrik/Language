@@ -41,4 +41,8 @@ public class App {
     public HashMap<String, Lang> getLanguages() {
         return languages;
     }
+
+    public Definition createDefinition(String definition, String pronunciation) {
+        return new Definition(definition, pronunciation);
+    }
  }

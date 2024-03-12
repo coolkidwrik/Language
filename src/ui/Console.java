@@ -1,5 +1,6 @@
 package ui;
 import model.App;
+import model.Lang;
 
 import java.util.Scanner;
 
@@ -48,7 +49,7 @@ public class Console {
                 running = false;
             }
             else {
-                System.out.println("Invalid input. Try again\n");
+                printError("Invalid input. Try again\n");
             }
         }
         System.out.println("\nGoodbye!");
@@ -91,7 +92,8 @@ public class Console {
 
     private void ViewALanguage() {
         ViewLanguages();
-        String langName = getUserInput("Enter language name");
+        String langName = getUserInput("Enter language from the list");
+        Lang lang = app.getLanguages().get(langName);
         printViewLanguageMenu();
         String input = getUserInput("Enter a number");
         if (input.equals("1")) {
@@ -109,13 +111,12 @@ public class Console {
         }
     }
 
-
     //EFFECTS: prints the menu for the language (option 4)
     private void printViewLanguageMenu() {
         System.out.println("1. Add a word");
         System.out.println("2. Remove a word");
         System.out.println("3. View all words");
-        System.out.println("4. View a word");
+        System.out.println("4. View a word"); // this should also give the option to edit the word
         System.out.println("5. Back");
     }
 

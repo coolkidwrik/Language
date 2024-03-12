@@ -12,9 +12,9 @@ import java.util.HashMap;
             [月が大きいですね, (the moon is big tonight)]
 */
 public class Definition {
-    private final String definition;
+    private String definition;
 
-    private final String pronunciation;
+    private String pronunciation;
 
     // stores examples of the word in sentences along with additional information
     // structure is {example sentence : additional information}
@@ -23,10 +23,10 @@ public class Definition {
     private final HashMap<String, String> examples;
 
     //EFFECTS: constructs a definition with a definition and examples
-    public Definition(String definition, String pronunciation, HashMap<String, String> examples) {
+    public Definition(String definition, String pronunciation) {
         this.definition = definition;
         this.pronunciation = pronunciation;
-        this.examples = examples;
+        examples = new HashMap<>();
     }
 
     // getters
@@ -47,6 +47,21 @@ public class Definition {
         return examples;
     }
 
+    // setters
+    //////////////////////////
+
+    //MODIFIES: this
+    //EFFECTS: sets the definition
+    public void setDefinition(String definition) {
+        this.definition = definition;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets the pronunciation
+    public void setPronunciation(String pronunciation) {
+        this.pronunciation = pronunciation;
+    }
+
     // methods
     //////////////////////////
 
@@ -62,5 +77,18 @@ public class Definition {
             sb.append(entry.getKey()).append(" : ").append(entry.getValue()).append("\n");
         }
         return sb.toString();
+    }
+
+    //MODIFIES: this
+    //EFFECTS: adds an example to the definition
+    public void addExample(String example, String additionalInfo) {
+        examples.put(example, additionalInfo);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: removes an example from the definition
+    public void removeExample(int exampleNumber) {
+        String example = (String) examples.keySet().toArray()[exampleNumber];
+        examples.remove(example);
     }
 }
