@@ -34,10 +34,21 @@ public class Console {
                 RemoveLanguage();
             } else if (input.equals("3")) {
                 ViewLanguages();
-            } else {
-                // TODO: implement menu functionality
-                // implement the rest of the menu
+                getUserInput("Press enter to return to the menu");
+                System.out.println("\n");
+            } else if (input.equals("4")) {
+                ViewALanguage();
+            } else if (input.equals("5")) {
+                // LoadLanguages();
+                continue;
+            } else if (input.equals("6")) {
+                // SaveLanguages();
+                continue;
+            } else if (input.equals("7")) {
                 running = false;
+            }
+            else {
+                System.out.println("Invalid input. Try again\n");
             }
         }
         System.out.println("\nGoodbye!");
@@ -66,7 +77,7 @@ public class Console {
     private void RemoveLanguage() {
         String langName = getUserInput("Enter the name of the language");
         app.removeLanguage(langName);
-        System.out.println("Language " + langName + " added");
+        System.out.println("Language " + langName + " removed\n");
     }
 
     private void ViewLanguages() {
@@ -76,11 +87,27 @@ public class Console {
             System.out.println(count + ". "+ lang);
             count++;
         }
-        getUserInput("Press enter to return to the menu");
-        System.out.println("\n");
     }
 
-
+    private void ViewALanguage() {
+        ViewLanguages();
+        String langName = getUserInput("Enter language name");
+        printViewLanguageMenu();
+        String input = getUserInput("Enter a number");
+        if (input.equals("1")) {
+            // AddWord(langName);
+        } else if (input.equals("2")) {
+            // RemoveWord(langName);
+        } else if (input.equals("3")) {
+            // ViewWords(langName);
+        } else if (input.equals("4")) {
+            // ViewWord(langName);
+        } else if (input.equals("5")) {
+            // do nothing
+        } else {
+            printError("Invalid input");
+        }
+    }
 
 
     //EFFECTS: prints the menu for the language (option 4)
@@ -89,12 +116,7 @@ public class Console {
         System.out.println("2. Remove a word");
         System.out.println("3. View all words");
         System.out.println("4. View a word");
-        System.out.println("7. Back");
-    }
-
-    //EFFECTS: prints the message
-    private void printMessage(String message) {
-        System.out.println(message);
+        System.out.println("5. Back");
     }
 
     //EFFECTS: prints the error message

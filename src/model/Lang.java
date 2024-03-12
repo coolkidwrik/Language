@@ -10,8 +10,6 @@ import java.util.HashMap;
     so structure might look like:
     {月 : { moon : moon-Definition,
             month : month-Definition}}
-
-    definition does not have to be re-written per language. This can be abstracted out into another class (Definition)
 */
 public class Lang {
     // TODO: go over implementation
@@ -19,7 +17,7 @@ public class Lang {
     // fields
     //////////////////////////
     private final String langName;
-    private HashMap<String, HashMap<String, Definition>> words;
+    private final HashMap<String, HashMap<String, Definition>> words;
 
     // constructors
     //////////////////////////
