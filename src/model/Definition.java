@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 /*
@@ -58,6 +57,10 @@ public class Definition {
 
     //EFFECTS: returns examples and additional information in a string
     public String examplesToString() {
-        return Arrays.toString(examples.entrySet().toArray());
+        StringBuilder sb = new StringBuilder();
+        for (HashMap.Entry<String, String> entry : examples.entrySet()) {
+            sb.append(entry.getKey()).append(" : ").append(entry.getValue()).append("\n");
+        }
+        return sb.toString();
     }
 }
