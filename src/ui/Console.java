@@ -39,7 +39,10 @@ public class Console {
                 getUserInput("Press enter to return to the menu");
                 System.out.println("\n");
             } else if (input.equals("4")) {
-                ViewALanguage();
+                ViewLanguages();
+                String langName = getUserInput("Enter language from the list");
+                Lang lang = app.getLanguages().get(langName);
+                ViewALanguage(lang);
             } else if (input.equals("5")) {
                 // LoadLanguages();
                 continue;
@@ -93,10 +96,8 @@ public class Console {
     }
 
     //EFFECTS: gets user input for language to view
-    private void ViewALanguage() {
-        ViewLanguages();
-        String langName = getUserInput("Enter language from the list");
-        Lang lang = app.getLanguages().get(langName);
+    private void ViewALanguage(Lang lang) {
+        System.out.println("Viewing " + lang.getLangName() + " language");
         printViewLanguageMenu();
         String input = getUserInput("Enter a number");
         if (input.equals("1")) {
@@ -112,7 +113,7 @@ public class Console {
         } else {
             printError("Invalid input");
         }
-        ViewALanguage();
+        ViewALanguage(lang);
     }
 
     //EFFECTS: prints the menu for the language (option 4)
@@ -146,8 +147,9 @@ public class Console {
             def.addExample(example, additionalInfo);
             String another = getUserInput("Do you want to add another example sentence? (y/n)");
             addExampleProcess(def, another);
-        } else if (exampleQuestion.equals("n")){
+        } else if (exampleQuestion.equals("n")) {
             // do nothing
+            System.out.println("Word added\n");
         } else {
             printError("Invalid input. Try again\n");
             String tryAgain = getUserInput("Do you want to add an example sentence? (y/n)");
@@ -158,7 +160,6 @@ public class Console {
     //EFFECTS: removes a word from the language
     private void removeWordProcess(Lang lang) {
         // TODO: implement
-
     }
 
     //EFFECTS: prints the list of words in the language
@@ -169,7 +170,7 @@ public class Console {
             System.out.println(count + ". " + word);
             count++;
         }
-        getUserInput("Press enter to return to "+ lang +" menu");
+        getUserInput("Press enter to return to "+ lang.getLangName() +" menu");
         System.out.println("\n");
     }
 
