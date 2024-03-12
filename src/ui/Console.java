@@ -103,11 +103,13 @@ public class Console {
         if (input.equals("1")) {
             addWordProcess(lang);
         } else if (input.equals("2")) {
-            // RemoveWord(langName);
+            removeWordProcess(lang);
         } else if (input.equals("3")) {
             viewWords(lang);
+            getUserInput("Press enter to return to "+ lang.getLangName() +" menu");
+            System.out.println("\n");
         } else if (input.equals("4")) {
-            // ViewWord(langName);
+            viewAWord(lang);
         } else if (input.equals("5")) {
             return;
         } else {
@@ -159,7 +161,10 @@ public class Console {
 
     //EFFECTS: removes a word from the language
     private void removeWordProcess(Lang lang) {
-        // TODO: implement
+        viewWords(lang);
+        String word = getUserInput("Enter the word to remove from the language");
+        lang.removeWord(word);
+        System.out.println("Word removed\n");
     }
 
     //EFFECTS: prints the list of words in the language
@@ -170,8 +175,12 @@ public class Console {
             System.out.println(count + ". " + word);
             count++;
         }
-        getUserInput("Press enter to return to "+ lang.getLangName() +" menu");
-        System.out.println("\n");
+    }
+
+    private void viewAWord(Lang lang) {
+        viewWords(lang);
+        String word = getUserInput("which word would you like to view?");
+        System.out.println(lang.wordToString(word));
     }
 
     //EFFECTS: prints the error message

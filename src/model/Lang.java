@@ -106,4 +106,15 @@ public class Lang {
     public String viewDefinition(String word, String translation) {
         return words.get(word).get(translation).toString();
     }
+
+    //EFFECTS: returns a string with the word, it's translation and definition
+    public String wordToString(String word) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(word).append("\n");
+        for (String translation : words.get(word).keySet()) {
+            sb.append(translation).append("\n");
+            sb.append(words.get(word).get(translation).toString()).append("\n");
+        }
+        return sb.toString();
+    }
 }
